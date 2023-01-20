@@ -80,12 +80,19 @@ def login():
 
 # This func will be improved
 def register_data():
-    cur.execute(
-        "insert into customer (username,surname) values(%s,%s)",
-        (username, surname))
-    connection.commit()
-    connection.close()
-    messagebox.showinfo("Success !", "Registration Completed !", parent=root)
+
+        sql = """INSERT INTO pythondeneme.customer (ssn, name,surname, adress, dob, tel) VALUES (%s, %s, %s, %s, %s, %s)"""
+        val = [
+            (ssn, username, surname, adress, dob, tel)
+        ]
+
+        cur.executemany(sql, val)
+
+        sql = """INSERT INTO pythondeneme.product (product_code, brand,product_name) VALUES (%s, %s, %s)"""
+        val = [
+            (productCode, brand, productName)
+
+        ]
 
 
 # we defined username and surname global bcs we need to reach them in other classes.
