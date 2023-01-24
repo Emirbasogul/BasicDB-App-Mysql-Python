@@ -81,16 +81,16 @@ def login():
 # This func will be improved
 def register_data():
 
-        sql = """INSERT INTO pythondeneme.customer (ssn, name,surname, adress, dob, tel) VALUES (%s, %s, %s, %s, %s, %s)"""
+        sql = """INSERT INTO pythondeneme.customer (ssn, name,surname, adress, tel) VALUES (%s, %s, %s, %s, %s)"""
         val = [
-            (ssn, username, surname, adress, dob, tel)
+            (ssn.get(), username.get(), surname.get(), adress.get(), tel.get())
         ]
 
         cur.executemany(sql, val)
 
         sql = """INSERT INTO pythondeneme.product (product_code, brand,product_name) VALUES (%s, %s, %s)"""
         val = [
-            (productCode, brand, productName)
+            (productCode.get(), brand.get(), productName.get())
 
         ]
 
@@ -106,11 +106,11 @@ global productCode
 global productName
 global brand
 
-# Get the username and surname with Stringvar() command
+# define the variables
 username = StringVar()
 surname = StringVar()
 ssn = StringVar()
-dob = StringVar()
+# dob = StringVar()
 tel = StringVar()
 adress = StringVar()
 productCode = StringVar()
@@ -192,7 +192,7 @@ label = customtkinter.CTkLabel(master=frame1, text="date of birth")
 label.pack(pady=1, padx=10)
 
 # An entry block to enter a Dob.
-entryName = customtkinter.CTkEntry(master=frame1, placeholder_text="date of birth", textvariable=dob)
+entryName = customtkinter.CTkEntry(master=frame1, placeholder_text="date of birth")
 entryName.pack(pady=1, padx=10)
 
 #           empty label.
